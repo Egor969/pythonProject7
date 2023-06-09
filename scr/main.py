@@ -1,7 +1,10 @@
-from utils.services import load_json, get_last_five_successful_operations, sort_by_date, print_info
+import utils
+from os import path
 
-filename = 'data/operation.json'
 
-if __name__ == '__main__':
-    last_5 = get_last_five_successful_operations(sort_by_date(load_json(filename)))
-    print_info(last_5)
+text = path.join('..', 'scr', 'operations.json')
+date = utils.open_file(text)
+date = utils.chek_state_and_sorted(date)
+
+for i in utils.output_last_operations(date):
+    print(i)
